@@ -8,10 +8,10 @@ import Image from "next/image";
 
 const menuItems = [
   { label: "Inicio", href: "/" },
-  { label: "Servicios", href: "/Services" },
-  { label: "Proyectos", href: "/Proyects" },
-  { label: "Conócenos", href: "/Us" },
-  { label: "Cotizador", href: "/Contact" },
+  { label: "Hombres", href: "/Services" },
+  { label: "Mujeres", href: "/Proyects" },
+  { label: "Personalizados", href: "/Us" },
+  { label: "Diseña", href: "/Contact" },
 ];
 
 export default function Header() {
@@ -19,7 +19,8 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-3 left-0 right-0 z-50  text-white flex items-center justify-between px-6 py-4">
+    <header className="fixed top-3 left-0 right-0 z-50 text-white flex items-center justify-between px-8 py-4">
+      {/* Botón hamburguesa */}
       <button
         onClick={() => setIsOpen(true)}
         className="text-white"
@@ -28,10 +29,12 @@ export default function Header() {
         <FaBars size={30} />
       </button>
 
+      {/* Logo centrado */}
       <div className="absolute left-1/2 transform -translate-x-1/2">
         <Image src="/YUMA.png" alt="logo YUMA" width={60} height={60} />
       </div>
 
+      {/* Íconos de usuario y carrito */}
       <div className="flex items-center space-x-6">
         <FaUser size={24} />
         <div className="relative">
@@ -42,13 +45,13 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Menú lateral */}
       <div
-        className={`fixed inset-0 bg-black text-right transform ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-black text-left transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
-        <div className="flex justify-end p-4">
+        {/* Botón cerrar */}
+        <div className="flex justify-start p-8">
           <button
             onClick={() => setIsOpen(false)}
             className="text-white text-3xl"
@@ -58,7 +61,8 @@ export default function Header() {
           </button>
         </div>
 
-        <nav className="mt-12 flex flex-col items-end space-y-8 pr-10">
+        {/* Menú */}
+        <nav className="mt-12 flex flex-col items-start space-y-8 pl-10">
           {menuItems.map(({ label, href }) => {
             const active = pathname === href;
             return (
@@ -66,10 +70,10 @@ export default function Header() {
                 key={href}
                 href={href}
                 onClick={() => setIsOpen(false)}
-                className={`uppercase font-bold text-5xl md:text-6xl transition-colors ${
+                className={`uppercase font-bold text-4xl md:text-6xl transition-colors ${
                   active
-                    ? "text-green"
-                    : "text-white hover:text-green hover:scale-110"
+                    ? "text-red"
+                    : "text-gray hover:text-red hover:scale-110"
                 }`}
               >
                 {label}

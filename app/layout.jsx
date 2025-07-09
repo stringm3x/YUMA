@@ -1,9 +1,11 @@
-import { Geist, Passion_One } from "next/font/google";
+import { Poppins, Passion_One } from "next/font/google";
 import "./globals.css";
-import Header from "./Header";
+import Header from "../components/Header";
+import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins-sans",
+  weight: "200",
   subsets: ["latin"],
 });
 
@@ -26,12 +28,13 @@ export default function RootLayout({ children }) {
     <html lang="es" className="dark">
       <body
         className={`
-          ${geistSans.variable} ${passionOne.variable}
+          ${poppins.variable} ${passionOne.variable}
           bg-black text-white
         `}
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
