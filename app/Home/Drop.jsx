@@ -1,4 +1,3 @@
-// app/components/Drop.jsx (o donde lo tengas)
 import ProductCard from "../../components/ProductCard";
 import { getAllProducts } from "../../lib/shopify";
 import Image from "next/image";
@@ -29,7 +28,7 @@ export default async function Drop() {
         </div>
       </div>
 
-      <div className="flex space-x-6 overflow-x-auto no-scrollbar px-3">
+      <div className="flex space-x-8 overflow-x-auto no-scrollbar px-3">
         {displayProducts.map((product, idx) => {
           // opcional: puedes añadir un badge o resaltado si quieres
           let badge = "";

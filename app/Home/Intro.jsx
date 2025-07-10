@@ -38,7 +38,7 @@ const Intro = () => {
             key={item.id}
             className="relative group w-64 h-80 p-5 bg-white content-center justify-items-center rounded-2xl overflow-hidden"
           >
-            <h1 className="relative z-10 text-red text-[40px] font-black">
+            <h1 className="relative z-10 text-red text-4xl md:text-[40px] font-black">
               {item.title}
             </h1>
             <div className="absolute inset-0 flex items-center justify-center z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

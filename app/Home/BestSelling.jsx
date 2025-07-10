@@ -12,11 +12,11 @@ export default async function BestSelling() {
 
   return (
     <section className="py-12 space-y-20">
-      <h1 className="text-4xl lg:text-5xl text-white mb-8 px-3 md:px-10">
+      <h1 className="text-3xl lg:text-5xl text-white mb-8 px-5 md:px-10">
         LO MÁS VENDIDO
       </h1>
 
-      <div className="flex space-x-6 overflow-x-auto no-scrollbar px-3">
+      <div className="flex space-x-8 overflow-x-auto no-scrollbar px-3">
         {displayProducts.map((product, idx) => {
           let badge = "";
           let highlighted = false;
