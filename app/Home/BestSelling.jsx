@@ -1,4 +1,4 @@
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../components/ProductCard";
 import { getAllProducts } from "../../lib/shopify";
 
 export default async function BestSelling() {

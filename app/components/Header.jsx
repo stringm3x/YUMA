@@ -8,10 +8,9 @@ import Image from "next/image";
 
 const menuItems = [
   { label: "Inicio", href: "/" },
-  { label: "Hombres", href: "/Services" },
-  { label: "Mujeres", href: "/Proyects" },
-  { label: "Personalizados", href: "/Us" },
-  { label: "Diseña", href: "/Contact" },
+  { label: "Hombres", href: "/Men" },
+  { label: "Mujeres", href: "/Women" },
+  { label: "Diseña", href: "/about" },
 ];
 
 export default function Header() {
