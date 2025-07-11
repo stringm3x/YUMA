@@ -37,7 +37,7 @@ const sections = [
 const Menu = () => {
   return (
     <section className="h-screen py-20 px-5 lg:px-10">
-      <div className="h-full grid md:grid-cols-3 md:grid-rows-5 gap-5">
+      <div className="h-full grid md:grid-cols-3 grid-rows-5 gap-5">
         {/* Shorts */}
         <div className="relative bg-white border col-span-1 row-span-2 justify-items-center p-5 overflow-hidden">
           <Image
