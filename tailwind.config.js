@@ -35,6 +35,7 @@ module.exports = {
       black: "#000000",
       bg: "#000000",
       gray: "#d1d5db",
+      aqua: "#00ffff",
     },
     spacing: {
       0: "0",
@@ -79,5 +80,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-filters")],
 };
