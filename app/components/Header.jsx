@@ -10,7 +10,8 @@ const menuItems = [
   { label: "Inicio", href: "/" },
   { label: "Hombres", href: "/Men" },
   { label: "Mujeres", href: "/Women" },
-  { label: "Diseña", href: "/about" },
+  { label: "Diseña", href: "/Design" },
+  { label: "Nosotros", href: "/About" },
 ];
 
 export default function Header() {
