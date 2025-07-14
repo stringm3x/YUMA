@@ -37,7 +37,7 @@ const sections = [
 const Menu = () => {
   return (
     <section className="sm:h-screen py-20 px-5 lg:px-10">
-      <div className="h-full grid md:grid-cols-3 grid-rows-5 gap-5">
+      <div className="h-full grid grid-rows-12 md:grid-cols-3 md:grid-rows-5 gap-5">
         {/* Shorts */}
         <div className="relative bg-white border col-span-1 row-span-2 justify-items-center p-5 overflow-hidden">
           <Image
@@ -49,7 +49,7 @@ const Menu = () => {
           />
           <div className="relative flex flex-col h-full justify-end">
             <h1 className="text-red text-3xl lg:text-4xl font-bold">SHORTS</h1>
-            <button className="border-2 px-8 py-2 rounded-2xl bg-black">
+            <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
             </button>
           </div>
@@ -65,7 +65,7 @@ const Menu = () => {
           />
           <div className="relative flex flex-col gap-3 items-center">
             <h1 className="text-2xl lg:text-3xl  font-bold">PROMOCIONES</h1>
-            <button className="border-2 px-8 py-2 rounded-2xl">Ver</button>
+            <button className="border-2 w-44 py-2 rounded-2xl">Ver</button>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ const Menu = () => {
           />
           <div className="relative flex flex-col h-full justify-end">
             <h1 className="text-black text-3xl lg:text-4xl font-bold">CONJUNTOS</h1>
-            <button className="border-2 px-8 py-2 rounded-2xl bg-black">
+            <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
             </button>
           </div>
@@ -97,7 +97,7 @@ const Menu = () => {
           />
           <div className="relative flex flex-col h-full justify-end">
             <h1 className="text-black text-3xl lg:text-4xl font-bold">PLAYERAS</h1>
-            <button className="border-2 px-8 py-2 rounded-2xl bg-black">
+            <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
             </button>
           </div>
@@ -114,7 +114,7 @@ const Menu = () => {
           />
           <div className="relative flex flex-col h-full justify-end">
             <h1 className="text-red text-3xl lg:text-4xl font-bold">PANTS</h1>
-            <button className="border-2 px-8 py-2 rounded-2xl bg-black">
+            <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
             </button>
           </div>
