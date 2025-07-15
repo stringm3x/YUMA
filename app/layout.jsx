@@ -2,6 +2,8 @@ import { Poppins, Passion_One } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "@/app/components/Footer";
+import { AuthProvider } from "../context/AuthContext";
+import { CartProvider } from "../context/CartContext";
 
 const poppins = Poppins({
   variable: "--font-poppins-sans",
@@ -29,12 +31,16 @@ export default function RootLayout({ children }) {
       <body
         className={`
           ${poppins.variable} ${passionOne.variable}
-          bg-black text-white
+          bg-bg text-white
         `}
       >
-        <Header />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <CartProvider>
+            <Header />
+            {children}
+            <Footer />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

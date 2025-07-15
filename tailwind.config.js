@@ -32,10 +32,10 @@ module.exports = {
       green: "#50ff05",
       yellow: "#F5A524",
       gold: "#f6c75e",
-      black: "#000000",
+      black: "#171717",
       bg: "#000000",
       gray: "#d1d5db",
-      aqua: "#00ffff",
+      zinc: "#52525b",
     },
     spacing: {
       0: "0",
