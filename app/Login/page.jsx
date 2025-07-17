@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -23,14 +25,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto h-screen p-20">
-      <h1 className="text-3xl font-bold mb-4 text-white">Iniciar Sesión</h1>
+    <section className="max-w-md mx-auto h-screen p-10 sm:p-20 flex flex-col items-center justify-center gap-5">
+      <Image src="/YUMA.png" alt="logo" width={100} height={100} />
+      <h1 className="text-3xl mb-4 text-white">Iniciar Sesión</h1>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 flex flex-col items-center w-full"
+      >
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-2 border rounded bg-gray-800 text-white"
+          className="w-full p-2 border rounded bg-gray text-white"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -38,18 +44,32 @@ export default function LoginPage() {
         <input
           type="password"
           placeholder="Contraseña"
-          className="w-full p-2 border rounded bg-gray-800 text-white"
+          className="w-full p-2 border rounded bg-gray text-white"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
+        <Link href="/Forgot-Password" className="justify-self-center">
+          <span className="underline text-white">
+            ¿Haz olvidado tu contraseña?
+          </span>
+        </Link>
+
         <button
           type="submit"
-          className="w-full bg-white text-black py-2 rounded font-bold"
+          className="w-full bg-white text-black py-2 rounded-full font-bold"
         >
           Entrar
         </button>
+
+        <h1 className="text-gray flex flex-row gap-2">
+          ¿No tienes cuenta?
+          <Link href="/Register" className="justify-self-center">
+            <span className="text-white">Crear cuenta</span>
+          </Link>
+        </h1>
       </form>
-    </div>
+    </section>
   );
 }

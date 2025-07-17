@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex flex-col space-y-6">
           {/* Instagram */}
           <div className="flex items-start space-x-3">
-            <Instagram size={24} className="self-center" />
+            <Instagram size={20} className="self-center" />
             <div className="flex flex-col leading-tight">
               <a
                 href="https://instagram.com/YUMA_EQUIPMENT"
@@ -33,7 +33,7 @@ export default function Footer() {
 
           {/* Facebook */}
           <div className="flex items-center space-x-3">
-            <Facebook size={24} />
+            <Facebook size={20} />
             <a
               href="https://facebook.com/YUMA"
               target="_blank"
@@ -46,14 +46,14 @@ export default function Footer() {
 
           {/* Número */}
           <div className="leading-tight">
-            <p className="text-gray uppercase mb-1">Número</p>
+            <p className="text-zinc uppercase mb-1">Número</p>
             <p>Cel. (921) 306-2502</p>
             <p>Cel. (55) 3189-0628</p>
           </div>
 
           {/* Email */}
           <div className="leading-tight">
-            <p className="text-gray uppercase mb-1">Email</p>
+            <p className="text-zinc uppercase mb-1">Email</p>
             <a href="mailto:yuma@outlook.com" className="hover:underline">
               yuma@outlook.com
             </a>
@@ -71,19 +71,19 @@ export default function Footer() {
           <p className="text-white text-lg font-bold">Páginas</p>
           <nav className="flex flex-col space-y-1">
             <Link href="/">
-              <span className="text-gray hover:text-white">Inicio</span>
+              <span className="text-zinc hover:text-white">Inicio</span>
             </Link>
             <Link href="/men">
-              <span className="text-gray hover:text-white">Hombres</span>
+              <span className="text-zinc hover:text-white">Hombres</span>
             </Link>
             <Link href="/women">
-              <span className="text-gray hover:text-white">Mujeres</span>
+              <span className="text-zinc hover:text-white">Mujeres</span>
             </Link>
             <Link href="/design">
-              <span className="text-gray hover:text-white">Diseña</span>
+              <span className="text-zinc hover:text-white">Diseña</span>
             </Link>
             <Link href="/about">
-              <span className="text-gray hover:text-white">Nosotros</span>
+              <span className="text-zinc hover:text-white">Nosotros</span>
             </Link>
           </nav>
           <Link href="/privacy">

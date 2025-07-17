@@ -19,8 +19,8 @@ export default function Modal({ isOpen, onClose, children }) {
 
           {/* Panel */}
           <motion.div
-            className="fixed top-0 left-0 z-50 bg-black text-white rounded-br-2xl rounded-tr-2xl overflow-y-auto"
-            style={{ width: "33.3333%", height: "95vh" }}
+            className="fixed top-4 left-0 z-50 bg-black text-white rounded-br-2xl rounded-tr-2xl overflow-y-auto"
+            style={{ width: "75.000%", height: "95vh" }}
             initial={{ x: "-100%", opacity: 0 }}
             animate={{ x: "0%", opacity: 1 }}
             exit={{ x: "-100%", opacity: 0 }}
@@ -30,7 +30,7 @@ export default function Modal({ isOpen, onClose, children }) {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-red text-2xl font-bold"
+              className="absolute top-4 right-4 text-red text-3xl sm:text-5xl font-bold"
             >
               ×
             </button>

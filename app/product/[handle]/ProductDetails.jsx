@@ -11,20 +11,20 @@ export default function ProductDetails({ product }) {
   const [size, setSize] = useState("M");
 
   return (
-    <section className="flex flex-row p-20 h-screen">
+    <section className="flex flex-col-reverse lg:flex-row py-20 px-6 sm:px-14 xl:p-20 xl:h-screen overflow-hidden">
       {/* --- Detalles izquierdo --- */}
-      <div className="w-1/2 flex flex-col gap-5">
-        <h1 className="text-8xl font-bold">{product.title}</h1>
+      <div className="lg:w-1/2 flex flex-col gap-5">
+        <h1 className="text-5xl sm:text-7xl xl:text-8xl font-bold">{product.title}</h1>
 
         {/* PRECIO */}
         <div className="flex flex-col gap-1 pl-2">
-          <h2 className="text-3xl text-zinc">Precio</h2>
-          <span className="text-6xl font-bold">$500</span>
+          <h2 className="text-xl sm:text-2xl xl:text-3xl text-zinc">Precio</h2>
+          <span className="text-4xl sm:text-5xl xl:text-6xl font-bold">$500</span>
         </div>
 
         {/* Color */}
         <div className="flex flex-col gap-3 pl-2">
-          <h2 className="text-3xl text-zinc">Selecciona el color</h2>
+          <h2 className="text-xl sm:text-2xl xl:text-3xl text-zinc">Selecciona el color</h2>
           <div className="flex items-center space-x-5">
             {[
               { key: "yellow", bg: "bg-yellow" },
@@ -36,7 +36,7 @@ export default function ProductDetails({ product }) {
                 key={c.key}
                 onClick={() => setColor(c.key)}
                 className={`
-                  w-8 h-8 rounded-full border
+                  w-6 h-6 xl:w-8 xl:h-8 rounded-full border
                   ${c.bg}
                   ${color === c.key ? "ring-2 ring-white" : "ring-0"}
                 `}
@@ -47,8 +47,8 @@ export default function ProductDetails({ product }) {
 
         {/* Talla */}
         <div className="flex flex-col gap-3 pl-2">
-          <h2 className="text-3xl text-zinc">Selecciona la talla</h2>
-          <div className="flex items-center space-x-2 text-gray-400">
+          <h2 className="text-xl sm:text-2xl xl:text-3xl text-zinc">Selecciona la talla</h2>
+          <div className="flex items-center space-x-2 text-gray">
             {["XS", "S", "M", "L", "XL"].map((s, i) => (
               <button
                 key={s}
@@ -62,7 +62,7 @@ export default function ProductDetails({ product }) {
         </div>
 
         {/* Cantidad + Botón */}
-        <div className="flex items-center space-x-4 mt-10">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-10">
           <div className="flex items-center space-x-2 border border-white rounded">
             <button
               onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -83,7 +83,7 @@ export default function ProductDetails({ product }) {
             onClick={() => {
               /* add to cart + router.push('/cart') */
             }}
-            className="bg-white text-black w-64 h-12 rounded-full font-bold text-lg"
+            className="bg-white text-black w-60 xl:w-64 h-12 rounded-full font-bold text-lg"
           >
             AGREGAR AL CARRITO
           </button>
@@ -93,7 +93,7 @@ export default function ProductDetails({ product }) {
         <div className="mt-10">
           <button
             onClick={() => setShowDetails(true)}
-            className="flex items-center text-gray space-x-2"
+            className="flex items-center text-gray space-x-2 hover:text-white hover:underline"
           >
             <span> Más detalles</span>
           </button>
@@ -101,15 +101,15 @@ export default function ProductDetails({ product }) {
 
         {/* El modal, usando isOpen */}
         <Modal isOpen={showDetails} onClose={() => setShowDetails(false)}>
-          <h2 className="text-3xl font-bold mb-4">DESCRIPCIÓN</h2>
-          <ul className="list-disc ml-6 space-y-2 text-gray">
+          <h2 className="text-3xl sm:text-5xl font-bold mb-10">DESCRIPCIÓN</h2>
+          <ul className="list-disc sm:ml-6 space-y-2 text-gray">
             <li>Diseño minimalista para un enfoque total</li>
             <li>Logo termosellado</li>
             <li>Estilo de brazo caído para mayor libertad...</li>
           </ul>
 
           <h3 className="text-2xl font-bold mt-6 mb-2">TALLAS Y CORTE</h3>
-          <ul className="list-disc ml-6 space-y-2 text-gray">
+          <ul className="list-disc sm:ml-6 space-y-2 text-gray">
             <li>Slim fit</li>
             <li>Largo regular</li>
             <li>Modelo mide 1,75 m (5'9\") y lleva la talla L.</li>
@@ -118,7 +118,7 @@ export default function ProductDetails({ product }) {
           <h3 className="text-2xl font-bold mt-6 mb-2">
             MATERIALES Y CUIDADOS
           </h3>
-          <ul className="list-disc ml-6 space-y-2 text-gray">
+          <ul className="list-disc sm:ml-6 space-y-2 text-gray">
             <li>57% algodón, 38% poliéster reciclado, 5% elastano.</li>
           </ul>
 
@@ -128,7 +128,7 @@ export default function ProductDetails({ product }) {
 
       {/*Other Side*/}
       {/*Imagen del producto*/}
-      <div className="w-1/2 flex items-center justify-center">
+      <div className="lg:w-1/2 flex items-center justify-center">
         {product.imageUrl ? (
           <div className="relative w-96 h-[600px]">
             <Image

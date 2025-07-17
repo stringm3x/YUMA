@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
     <Link href={`/product/${product.handle}`}>
       <div className="block">
         {/* Contenedor de imagen */}
-        <div className="relative w-[250px] h-64 bg-white p-5">
+        <div className="relative w-[220px] h-64 lg:w-[250px] lg:h-64 bg-white p-5">
           {img && (
             <Image
               src={img.url}
