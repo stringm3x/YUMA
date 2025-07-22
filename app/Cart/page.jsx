@@ -21,7 +21,8 @@ export default function CartPage() {
     }
   };
 
-  if (lines.length === -1) {
+  // Cambié esto: estaba lines.length === -1 (siempre false), debe ser === 0
+  if (lines.length === 0) {
     return (
       <div className="max-w-4xl mx-auto p-20 h-screen text-center">
         <h1 className="text-3xl font-bold mb-4">Tu carrito está vacío</h1>
@@ -37,38 +38,51 @@ export default function CartPage() {
       <h1 className="text-4xl font-bold">Carrito de compras</h1>
 
       <ul className="space-y-4">
-        {lines.map(({ variantId, quantity }) => (
-          <li
-            key={variantId}
-            className="flex items-center space-x-4 border-b pb-4"
-          >
-            {/* Aquí puedes usar la URL real de la imagen */}
-            <div className="w-24 h-24 relative flex-shrink-0">
-              <Image
-                src={`https://cdn.shopify.com/.../${variantId}.jpg`}
-                alt=""
-                fill
-                className="object-cover rounded"
-              />
-            </div>
+        {lines.map(({ variantId, quantity, title }) => {
+          // Aquí parseamos la talla y color del nombre de la variante
+          // Si el título es tipo "XL / Negro", los partes:
+          const [size, color] = (title || "").split(" / ");
 
-            <div className="flex-1">
-              <p className="font-semibold">Producto {variantId}</p>
-              <p className="text-gray-500">Cantidad: {quantity}</p>
-            </div>
-
-            <button
-              onClick={() => removeItem(variantId)}
-              className="text-red-500 hover:underline"
+          return (
+            <li
+              key={variantId}
+              className="flex items-center space-x-4 border-b pb-4"
             >
-              Eliminar
-            </button>
-          </li>
-        ))}
+              {/* Si tienes la imagen real del producto, úsala aquí. Si no, pon un placeholder */}
+              <div className="w-24 h-24 relative flex-shrink-0 bg-gray-100 rounded">
+                <Image
+                  src={`https://cdn.shopify.com/.../${variantId}.jpg`} // Mejor usar la imagen de tu producto real
+                  alt={title || "Producto"}
+                  fill
+                  className="object-cover rounded"
+                />
+              </div>
+
+              <div className="flex-1">
+                <p className="font-semibold">
+                  {title || `Producto ${variantId}`}
+                </p>
+                {/* Solo muestra la talla y color si existen */}
+                <div className="text-gray text-sm">
+                  {size && <span>Talla: {size}</span>}
+                  {color && <span className="ml-3">Color: {color}</span>}
+                </div>
+                <p className="text-gray">Cantidad: {quantity}</p>
+              </div>
+
+              <button
+                onClick={() => removeItem(variantId)}
+                className="text-red hover:underline"
+              >
+                Eliminar
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       <div className="flex justify-between items-center">
-        <button onClick={clearCart} className="text-gray-500 hover:underline">
+        <button onClick={clearCart} className="text-gray hover:underline">
           Vaciar carrito
         </button>
         <button

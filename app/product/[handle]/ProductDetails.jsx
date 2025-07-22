@@ -2,20 +2,32 @@
 
 import { useCart } from "../../../context/CartContext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Modal from "../components/Modal";
 import Image from "next/image";
 
 export default function ProductDetails({ product }) {
-  const { title, images, variants, sizes } = product;
+  const { title, images, variants } = product;
   const [qty, setQty] = useState(1);
-  const [selectedSize, setSelectedSize] = useState(sizes[0] || "");
   const [showDetails, setShowDetails] = useState(false);
 
-  const [color, setColor] = useState("yellow");
+  // Extrae tallas y colores únicos
+  const tallas = useMemo(
+    () => [...new Set(variants.map((v) => v.title.split(" / ")[0]))],
+    [variants]
+  );
+  const colores = useMemo(
+    () => [...new Set(variants.map((v) => v.title.split(" / ")[1]))],
+    [variants]
+  );
 
+  const [selectedSize, setSelectedSize] = useState(tallas[0] || "");
+  const [color, setColor] = useState(colores[0] || "");
+
+  // Encuentra la variante correcta según talla y color
   const selectedVariant =
-    variants.find((v) => v.title === selectedSize) || variants[0];
+    variants.find((v) => v.title === `${selectedSize} / ${color}`) ||
+    variants[0];
 
   const { addItem } = useCart();
   const router = useRouter();
@@ -29,9 +41,7 @@ export default function ProductDetails({ product }) {
     <section className="flex flex-col-reverse lg:flex-row py-20 px-6 sm:px-14 xl:p-20 xl:h-screen overflow-hidden">
       {/* --- Detalles izquierdo --- */}
       <div className="lg:w-1/2 flex flex-col gap-5">
-        <h1 className="text-5xl sm:text-7xl xl:text-8xl font-bold">
-          {product.title}
-        </h1>
+        <h1 className="text-5xl sm:text-7xl xl:text-8xl font-bold">{title}</h1>
 
         {/* PRECIO */}
         <div className="flex flex-col gap-1 pl-2">
@@ -41,36 +51,50 @@ export default function ProductDetails({ product }) {
           </span>
         </div>
 
-        {/* Color */}
+        {/* Selector de color */}
         <div className="flex flex-col gap-3 pl-2">
           <h2 className="text-xl sm:text-2xl xl:text-3xl text-zinc">
             Selecciona el color
           </h2>
           <div className="flex items-center space-x-5">
-            {[
-              { key: "yellow", bg: "bg-yellow" },
-              { key: "purple", bg: "bg-purple" },
-              { key: "blue", bg: "bg-blue" },
-              { key: "orange", bg: "bg-orange" },
-            ].map((c) => (
+            {colores.map((c) => (
               <button
-                key={c.key}
-                onClick={() => setColor(c.key)}
+                key={c}
+                onClick={() => setColor(c)}
                 className={`
-          w-6 h-6 xl:w-8 xl:h-8 rounded-full border
-          ${c.bg}
-          ${color === c.key ? "ring-2 ring-white" : "ring-0"}
-        `}
+                  w-8 h-8 rounded-full border transition
+                  ${color === c ? "ring-2 ring-white" : "ring-0"}
+                `}
+                style={{
+                  backgroundColor:
+                    c.toLowerCase() === "negro"
+                      ? "#111"
+                      : c.toLowerCase() === "azul"
+                      ? "#38bdf8"
+                      : c.toLowerCase() === "amarillo"
+                      ? "#facc15"
+                      : c.toLowerCase() === "clara"
+                      ? "#f3f4f6"
+                      : c.toLowerCase() === "beige"
+                      ? "#f5f5dc"
+                      : c.toLowerCase() === "bronce"
+                      ? "#b08d57"
+                      : "#eee",
+                }}
+                aria-label={c}
+                title={c}
               />
             ))}
           </div>
         </div>
 
-        {/* Talla */}
+        {/* Selector de talla */}
         <div>
-          <h2 className="text-xl sm:text-2xl xl:text-3xl text-zinc mb-2">Talla</h2>
+          <h2 className="text-xl sm:text-2xl xl:text-3xl text-zinc mb-2">
+            Talla
+          </h2>
           <div className="flex space-x-2">
-            {sizes.map((size) => (
+            {tallas.map((size) => (
               <button
                 key={size}
                 onClick={() => setSelectedSize(size)}
@@ -148,10 +172,9 @@ export default function ProductDetails({ product }) {
         </Modal>
       </div>
 
-      {/*Other Side*/}
-      {/*Imagen del producto*/}
+      {/* Imagen del producto */}
       <div className="lg:w-1/2 flex items-center justify-center">
-        {product.images? (
+        {images ? (
           <div className="relative w-96 h-[600px]">
             <Image
               src={images[0]?.node.url}
@@ -162,7 +185,7 @@ export default function ProductDetails({ product }) {
           </div>
         ) : (
           <div className="w-96 h-[600px] bg-gray-200 flex items-center justify-center">
-            <span className="text-gray-500">Imagen no disponible</span>
+            <span className="text-gray">Imagen no disponible</span>
           </div>
         )}
       </div>
