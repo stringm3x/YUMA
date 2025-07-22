@@ -1,18 +1,10 @@
-import { notFound } from "next/navigation";
-import { getProductByHandle } from "../../../lib/shopify";
-import ProductDetails from "./ProductDetails";
+import ProductDetails from './ProductDetails'
+import { getProductByHandle } from '../../../lib/shopify'
+import { notFound } from 'next/navigation'
 
 export default async function ProductPage({ params }) {
-  const { handle } = params;
-  let product;
+  const data = await getProductByHandle(params.handle)
+  if (!data) return notFound()
 
-  try {
-    product = await getProductByHandle(handle);
-  } catch (e) {
-    console.error(e);
-    return notFound();
-  }
-  if (!product) return notFound();
-
-  return <ProductDetails product={product} />;
+  return <ProductDetails product={data} />
 }

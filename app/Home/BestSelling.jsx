@@ -28,7 +28,7 @@ export default async function BestSelling() {
 
           return (
             <ProductCard
-              key={`${product.id}-${idx}`} // añade idx para evitar keys duplicadas
+              key={`${product.id}-${idx}`}
               product={product}
               badge={badge}
               highlighted={highlighted}

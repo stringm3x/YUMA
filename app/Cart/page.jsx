@@ -25,7 +25,7 @@ export default function CartPage() {
     return (
       <div className="max-w-4xl mx-auto p-20 h-screen text-center">
         <h1 className="text-3xl font-bold mb-4">Tu carrito está vacío</h1>
-        <p className="text-gray-500">
+        <p className="text-gray">
           Agrega productos para continuar con tu compra.
         </p>
       </div>
