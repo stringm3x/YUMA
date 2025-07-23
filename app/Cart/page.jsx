@@ -12,7 +12,11 @@ export default function CartPage() {
   const handleCheckout = async () => {
     setLoading(true);
     try {
-      const webUrl = await createCheckout(lines);
+      const checkoutLines = lines.map((item) => ({
+        variantId: item.variantId,
+        quantity: item.quantity,
+      }));
+      const webUrl = await createCheckout(checkoutLines);
       window.location.assign(webUrl);
     } catch (err) {
       console.error(err);
