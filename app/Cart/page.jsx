@@ -12,16 +12,12 @@ export default function CartPage() {
   const handleCheckout = async () => {
     setLoading(true);
     try {
-      const checkoutLines = lines.map((item) => ({
-        variantId: item.variantId,
-        quantity: item.quantity,
-      }));
-      const webUrl = await createCheckout(checkoutLines);
-      window.location.assign(webUrl);
+      const checkoutUrl = await createCheckout(lines);
+      window.location.assign(checkoutUrl);
     } catch (err) {
-      console.error(err);
+      console.error("Error real:", err);
       setLoading(false);
-      alert("Error al iniciar checkout");
+      alert("Error al iniciar checkout: " + err.message);
     }
   };
 
