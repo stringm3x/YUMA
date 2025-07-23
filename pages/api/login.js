@@ -7,8 +7,7 @@ export default async function handler(req, res) {
   const query = `
     mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
       customerAccessTokenCreate(input: $input) {
-        customerAccessToken { accessToken expiresAt }
-        userErrors { message }
+        customerAccessToken { accessToken, expiresAt }
         customerUserErrors { message }
       }
     }
@@ -30,20 +29,14 @@ export default async function handler(req, res) {
 
   const json = await response.json();
   const data = json.data?.customerAccessTokenCreate;
+  const errors = data?.customerUserErrors;
 
-  const errors = [
-    ...(data?.userErrors || []),
-    ...(data?.customerUserErrors || []),
-  ];
-  if (errors.length > 0)
+  if (errors && errors.length > 0)
     return res.status(400).json({ error: errors[0].message });
 
-  if (data.customerAccessToken?.accessToken) {
-    return res.status(200).json({
-      accessToken: data.customerAccessToken.accessToken,
-      expiresAt: data.customerAccessToken.expiresAt,
-    });
-  }
-
-  return res.status(400).json({ error: "No se pudo iniciar sesión." });
+  return res.status(200).json({
+    accessToken: data.customerAccessToken.accessToken,
+    expiresAt: data.customerAccessToken.expiresAt,
+    email,
+  });
 }

@@ -52,8 +52,10 @@ export default function Header() {
       {/* Íconos de usuario y carrito */}
       <div className="flex items-center space-x-6">
         {user ? (
-          <div className="flex items-center gap-2">
-            <span className="hidden sm:block text-xs">{user.email}</span>
+          <div className="flex items-center gap-10">
+            <span className="hidden sm:block text-xs font-bold">
+              {user.email}
+            </span>
             <button
               onClick={logout}
               className="text-white hover:text-red"

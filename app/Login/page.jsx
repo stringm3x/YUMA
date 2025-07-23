@@ -17,16 +17,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Error desconocido");
-
-      localStorage.setItem("customer-token", json.accessToken);
-
+      await login(email, password);
       router.push("/");
     } catch (err) {
       setError(err.message);
@@ -37,7 +28,7 @@ export default function LoginPage() {
     <section className="max-w-md mx-auto h-screen p-10 sm:p-20 flex flex-col items-center justify-center gap-5">
       <Image src="/YUMA.png" alt="logo" width={100} height={100} />
       <h1 className="text-3xl mb-4 text-white">Iniciar Sesión</h1>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+      {error && <p className="text-red mb-4">{error}</p>}
       <form
         onSubmit={handleSubmit}
         className="space-y-4 flex flex-col items-center w-full"
