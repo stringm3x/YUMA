@@ -33,7 +33,14 @@ export default function ProductDetails({ product }) {
   const router = useRouter();
 
   const handleAddToCart = () => {
-    addItem(selectedVariant.id, qty);
+    addItem({
+      variantId: selectedVariant.id,
+      quantity: qty,
+      title: `${selectedSize} / ${color}`,
+      image: images[0]?.node.url || "",
+      price: selectedVariant.price,
+      productTitle: title,
+    });
     router.push("/Cart");
   };
 

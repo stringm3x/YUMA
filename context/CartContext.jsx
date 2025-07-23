@@ -22,17 +22,19 @@ export function CartProvider({ children }) {
     localStorage.setItem("yuma-cart", JSON.stringify(lines));
   }, [lines]);
 
-  const addItem = (variantId, quantity) => {
+  const addItem = (item) => {
     setLines((prev) => {
-      const exists = prev.find((item) => item.variantId === variantId);
+      const exists = prev.find(
+        (p) => p.variantId === item.variantId && p.title === item.title
+      );
       if (exists) {
-        return prev.map((item) =>
-          item.variantId === variantId
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
+        return prev.map((p) =>
+          p.variantId === item.variantId && p.title === item.title
+            ? { ...p, quantity: p.quantity + item.quantity }
+            : p
         );
       }
-      return [...prev, { variantId, quantity }];
+      return [...prev, item];
     });
   };
 
@@ -51,7 +53,6 @@ export function CartProvider({ children }) {
   );
 }
 
-// Hook para usar más cómodamente
 export function useCart() {
   return useContext(CartContext);
 }
