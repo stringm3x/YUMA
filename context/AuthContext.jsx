@@ -1,49 +1,70 @@
-'use client'
+"use client";
+import { createContext, useContext, useEffect, useState } from "react";
 
-import { createContext, useState, useEffect, useContext } from 'react'
-
-const AuthContext = createContext({
-  token: null,
-  login: async () => {},
-  logout: () => {}
-})
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(null)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Al montar, leemos del localStorage
+  // Cargar usuario de localStorage al montar
   useEffect(() => {
-    const t = localStorage.getItem('shopify_customer_token')
-    if (t) setToken(t)
-  }, [])
+    const stored = localStorage.getItem("yuma-user");
+    if (stored) setUser(JSON.parse(stored));
+    setLoading(false);
+  }, []);
 
-  // Función de login
+  // Guardar usuario cuando cambie
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("yuma-user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("yuma-user");
+    }
+  }, [user]);
+
+  // LOGIN (llama /api/login)
   const login = async (email, password) => {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    })
-    const json = await res.json()
-    if (!res.ok) throw new Error(json.error || 'Error desconocido')
-    localStorage.setItem('shopify_customer_token', json.accessToken)
-    setToken(json.accessToken)
-    return json.accessToken
-  }
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "No se pudo iniciar sesión");
+    // Guardas email y accessToken (Shopify)
+    setUser({ email, accessToken: data.accessToken });
+    return { email, accessToken: data.accessToken };
+  };
 
-  // Función de logout
+  // LOGOUT
   const logout = () => {
-    localStorage.removeItem('shopify_customer_token')
-    setToken(null)
-  }
+    setUser(null);
+    // Si necesitas, también puedes limpiar cookies aquí
+    window.location.reload(); // Opcional: para refrescar el UI
+  };
+
+  // REGISTRO (puedes adaptar si tienes /api/register)
+  const register = async (info) => {
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(info),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "No se pudo crear cuenta");
+    // Aquí puedes guardar el email o lo que te regrese el backend
+    setUser({ email: info.email, accessToken: data.accessToken });
+    return { email: info.email, accessToken: data.accessToken };
+  };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, register }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
 export function useAuth() {
-  return useContext(AuthContext)
+  return useContext(AuthContext);
 }

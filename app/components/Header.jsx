@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaBars, FaTimes, FaUser, FaShoppingCart } from "react-icons/fa";
 import Image from "next/image";
 import { useCart } from "../../context/CartContext";
@@ -19,12 +19,19 @@ const menuItems = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { lines } = useCart();
 
-  // Suma todas las cantidades del carrito
+  const { user, logout } = useAuth();
   const itemCount = lines.reduce((total, { quantity }) => total + quantity, 0);
 
-  const { token, logout } = useAuth();
+  // Navegación protegida para el carrito:
+  const handleCartClick = (e) => {
+    if (!user) {
+      e.preventDefault();
+      router.push("/Login");
+    }
+  };
 
   return (
     <header className="fixed top-3 left-0 right-0 z-50 text-white flex items-center justify-between px-8 py-4">
@@ -44,23 +51,29 @@ export default function Header() {
 
       {/* Íconos de usuario y carrito */}
       <div className="flex items-center space-x-6">
-        {token ? (
-          <button
-            onClick={logout}
-            className="text-white hover:text-red"
-            aria-label="Cerrar sesión"
+        {user ? (
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:block text-xs">{user.email}</span>
+            <button
+              onClick={logout}
+              className="text-white hover:text-red"
+              aria-label="Cerrar sesión"
+              title="Cerrar sesión"
+            >
+              <FaUser size={24} />
+            </button>
+          </div>
+        ) : (
+          <Link
+            href="/Login"
+            className="flex items-center"
+            aria-label="Iniciar sesión"
           >
             <FaUser size={24} />
-          </button>
-        ) : (
-          <Link href="/Login">
-            <div aria-label="Iniciar sesión">
-              <FaUser size={24} />
-            </div>
           </Link>
         )}
 
-        <Link href="/Cart">
+        <Link href="/Cart" onClick={handleCartClick}>
           <div className="relative">
             <FaShoppingCart size={24} />
             {itemCount > 0 && (

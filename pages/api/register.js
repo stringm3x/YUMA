@@ -2,18 +2,20 @@ export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Método no permitido" });
 
-  const { email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const query = `
-    mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-      customerAccessTokenCreate(input: $input) {
-        customerAccessToken { accessToken expiresAt }
+    mutation customerCreate($input: CustomerCreateInput!) {
+      customerCreate(input: $input) {
+        customer { id email }
         userErrors { message }
         customerUserErrors { message }
       }
     }
   `;
-  const variables = { input: { email, password } };
+  const variables = {
+    input: { firstName, lastName, email, password },
+  };
 
   const response = await fetch(
     `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-07/graphql.json`,
@@ -29,7 +31,7 @@ export default async function handler(req, res) {
   );
 
   const json = await response.json();
-  const data = json.data?.customerAccessTokenCreate;
+  const data = json.data?.customerCreate;
 
   const errors = [
     ...(data?.userErrors || []),
@@ -38,12 +40,6 @@ export default async function handler(req, res) {
   if (errors.length > 0)
     return res.status(400).json({ error: errors[0].message });
 
-  if (data.customerAccessToken?.accessToken) {
-    return res.status(200).json({
-      accessToken: data.customerAccessToken.accessToken,
-      expiresAt: data.customerAccessToken.expiresAt,
-    });
-  }
-
-  return res.status(400).json({ error: "No se pudo iniciar sesión." });
+  // ¡Listo! Usuario creado.
+  return res.status(200).json({ email: data.customer.email });
 }
