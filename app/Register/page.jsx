@@ -30,7 +30,7 @@ export default function RegisterPage() {
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Error desconocido");
-      router.push("/login");
+      router.push("/Login");
     } catch (err) {
       setError(err.message);
     }

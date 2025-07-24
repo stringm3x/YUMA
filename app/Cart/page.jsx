@@ -66,7 +66,7 @@ export default function CartPage() {
                 key={`${variantId}-${title}-${quantity}`}
                 className="flex items-center space-x-4 border-b pb-4"
               >
-                <div className="w-24 h-24 relative flex-shrink-0 bg-gray-100 rounded">
+                <div className="w-24 h-24 relative flex-shrink-0 bg-gray  rounded">
                   <Image
                     src={image || "/placeholder.jpg"}
                     alt={title || "Producto"}

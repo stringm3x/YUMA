@@ -3,7 +3,7 @@ import { getAllProducts } from "../../lib/shopify";
 
 export default async function BestSelling() {
   const products = await getAllProducts(8);
-  const count = 4;
+  const count = 5;
 
   const displayProducts =
     products.length >= count
