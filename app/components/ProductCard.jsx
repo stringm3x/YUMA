@@ -4,7 +4,6 @@ import Image from "next/image";
 export default function ProductCard({ product }) {
   const img = product.images?.edges?.[0]?.node;
 
-  // Verifica si el producto es personalizable/conjunto
   const isCustom = product.options?.some(
     (opt) =>
       opt.name.toLowerCase() === "personalizable" &&

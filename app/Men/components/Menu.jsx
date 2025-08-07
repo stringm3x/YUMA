@@ -48,7 +48,7 @@ const Menu = () => {
             height={100}
           />
           <div className="relative flex flex-col h-full justify-end">
-            <h1 className="text-red text-3xl lg:text-4xl font-bold">SHORTS</h1>
+            <h1 className="text-red text-3xl lg:text-4xl font-bold text-center">SHORTS</h1>
             <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
             </button>
@@ -78,7 +78,7 @@ const Menu = () => {
             width={180}
             height={200}
           />
-          <div className="relative flex flex-col h-full justify-end">
+          <div className="relative flex flex-col h-full justify-end items-center">
             <h1 className="text-black text-3xl lg:text-4xl font-bold">CONJUNTOS</h1>
             <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
@@ -113,7 +113,7 @@ const Menu = () => {
             height={200}
           />
           <div className="relative flex flex-col h-full justify-end">
-            <h1 className="text-red text-3xl lg:text-4xl font-bold">PANTS</h1>
+            <h1 className="text-red text-3xl lg:text-4xl font-bold text-center">PANTS</h1>
             <button className="border-2 w-44 py-2 rounded-2xl bg-black">
               Ver
             </button>

@@ -53,12 +53,12 @@ export default function Header() {
       <div className="flex items-center space-x-6">
         {user ? (
           <div className="flex items-center gap-10">
-            <span className="hidden sm:block text-xs font-bold">
+            <span className="hidden lg:block text-xs font-bold">
               {user.email}
             </span>
             <button
               onClick={logout}
-              className="text-white hover:text-red"
+              className="text-red hover:text-white"
               aria-label="Cerrar sesión"
               title="Cerrar sesión"
             >

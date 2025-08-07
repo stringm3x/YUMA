@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useCart } from "../../../context/CartContext";
 
 export default function CustomizerPage({ product }) {
-  // States para el formulario
+  // Estados actuales del formulario
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
   const [logoUrl, setLogoUrl] = useState("");
@@ -13,6 +13,12 @@ export default function CustomizerPage({ product }) {
   const [referenceDesigns, setReferenceDesigns] = useState([]);
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Estados para nuevos campos
+  const [dobleVista, setDobleVista] = useState(false);
+  const [prenda, setPrenda] = useState("");
+  const [gorro, setGorro] = useState(false);
+  const [tipoManga, setTipoManga] = useState("");
 
   const { addItem } = useCart();
 
@@ -23,7 +29,7 @@ export default function CustomizerPage({ product }) {
     setLoading(true);
 
     const uploaders = Array.from(files).map(async (file) => {
-      // Puedes usar https://cloudinary.com/documentation/upload_images#example_1_upload_an_image
+      // Usa tus datos reales de Cloudinary
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "tu_preset_publico");
@@ -58,6 +64,10 @@ export default function CustomizerPage({ product }) {
         secondaryLogos,
         referenceDesigns,
         description,
+        dobleVista,
+        prenda,
+        gorro,
+        tipoManga,
       },
       price: Number(product.priceRange?.minVariantPrice?.amount) || 0,
       productTitle: product.title,
@@ -67,9 +77,9 @@ export default function CustomizerPage({ product }) {
   };
 
   return (
-    <section className="flex flex-col lg:flex-row p-20 gap-3">
+    <section className="flex flex-col lg:flex-row px-3 py-10 md:p-20 gap-10 lg:gap-3">
       {/* Prendas a la izquierda */}
-      <div className="flex flex-col gap-10 w-1/6">
+      <div className="flex flex-col gap-10 lg:w-1/6">
         {product.images?.slice(1, 3).map((img, idx) => (
           <div key={img.node.url} className="flex flex-col items-center">
             <div className="w-48 h-48 relative">
@@ -82,14 +92,6 @@ export default function CustomizerPage({ product }) {
             </div>
           </div>
         ))}
-
-        {/* Total */}
-        <div className="mt-8 flex flex-col items-center">
-          <h1 className="text-3xl text-white font-bold">Total</h1>
-          <p className="text-4xl text-white font-bold">
-            ${product.variants[0].price}
-          </p>
-        </div>
       </div>
 
       {/* Personalización a la derecha */}
@@ -116,6 +118,65 @@ export default function CustomizerPage({ product }) {
             onChange={(e) => setSecondaryColor(e.target.value)}
             className="w-10 h-10"
           />
+        </div>
+
+        {/* Opciones extra */}
+        <div className="space-y-4">
+          {/* Doble vista */}
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="dobleVista"
+              checked={dobleVista}
+              onChange={(e) => setDobleVista(e.target.checked)}
+              className="w-5 h-5"
+            />
+            <label htmlFor="dobleVista" className="text-white">
+              Doble vista
+            </label>
+          </div>
+
+          {/* Short o Licra */}
+          <div className="flex items-center gap-4">
+            <label className="text-white">¿Short o Licra?</label>
+            <select
+              value={prenda}
+              onChange={(e) => setPrenda(e.target.value)}
+              className="p-1 rounded text-black"
+            >
+              <option value="">Seleccionar</option>
+              <option value="Short">Short</option>
+              <option value="Licra">Licra</option>
+            </select>
+          </div>
+
+          {/* Gorro */}
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="gorro"
+              checked={gorro}
+              onChange={(e) => setGorro(e.target.checked)}
+              className="w-5 h-5"
+            />
+            <label htmlFor="gorro" className="text-white">
+              Gorro
+            </label>
+          </div>
+
+          {/* Tipo de manga */}
+          <div className="flex items-center gap-4">
+            <label className="text-white">Tipo de manga:</label>
+            <select
+              value={tipoManga}
+              onChange={(e) => setTipoManga(e.target.value)}
+              className="p-1 rounded text-black"
+            >
+              <option value="">Seleccionar</option>
+              <option value="Sin manga">Sin manga</option>
+              <option value="Manga corta">Manga corta</option>
+            </select>
+          </div>
         </div>
 
         {/* Logo principal */}
@@ -195,6 +256,14 @@ export default function CustomizerPage({ product }) {
               />
             ))}
           </div>
+        </div>
+
+        {/* Total */}
+        <div className="mt-8 flex flex-row gap-2 items-center">
+          <h1 className="text-3xl text-white font-bold">Total</h1>
+          <p className="text-4xl text-white font-bold">
+            ${product.variants[0].price}
+          </p>
         </div>
 
         {/* Agregar al carrito */}
