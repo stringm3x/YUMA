@@ -3,6 +3,7 @@ import { getAllProducts } from "../../../lib/shopify";
 
 export default async function Sets() {
   const products = await getAllProducts(8);
+
   const count = 4;
 
   const customProducts = products.filter((p) =>

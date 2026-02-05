@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Design() {
   return (
@@ -27,11 +28,13 @@ export default function Design() {
       </div>
 
       {/* Botón centrado abajo */}
-      <button className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 bg-bg w-44 sm:w-52 h-12 sm:h-14 rounded-full flex items-center justify-center">
-        <span className="text-base sm:text-xl font-bold text-white">
-          Diseñar ahora
-        </span>
-      </button>
+      <Link href="/Design">
+        <button className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 bg-bg w-44 sm:w-52 h-12 sm:h-14 rounded-full flex items-center justify-center">
+          <span className="text-base sm:text-xl font-bold text-white">
+            Diseñar ahora
+          </span>
+        </button>
+      </Link>
     </section>
   );
 }

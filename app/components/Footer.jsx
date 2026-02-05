@@ -20,14 +20,6 @@ export default function Footer() {
               >
                 YUMA_EQUIPMENT
               </a>
-              <a
-                href="https://instagram.com/YUMA_USA_EQUIPMENT"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                YUMA_USA_EQUIPMENT
-              </a>
             </div>
           </div>
 
@@ -47,8 +39,7 @@ export default function Footer() {
           {/* Número */}
           <div className="leading-tight">
             <p className="text-zinc uppercase mb-1">Número</p>
-            <p>Cel. (921) 306-2502</p>
-            <p>Cel. (55) 3189-0628</p>
+            <p>Cel. +52 55 4344 0865</p>
           </div>
 
           {/* Email */}
@@ -73,20 +64,20 @@ export default function Footer() {
             <Link href="/">
               <span className="text-zinc hover:text-white">Inicio</span>
             </Link>
-            <Link href="/men">
+            <Link href="/Men">
               <span className="text-zinc hover:text-white">Hombres</span>
             </Link>
-            <Link href="/women">
+            <Link href="/Women">
               <span className="text-zinc hover:text-white">Mujeres</span>
             </Link>
-            <Link href="/design">
+            <Link href="/Design">
               <span className="text-zinc hover:text-white">Diseña</span>
             </Link>
-            <Link href="/about">
+            <Link href="/About">
               <span className="text-zinc hover:text-white">Nosotros</span>
             </Link>
           </nav>
-          <Link href="/privacy">
+          <Link href="/Privacy">
             <span className="underline text-white">Aviso de privacidad</span>
           </Link>
         </div>
