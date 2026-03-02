@@ -1,6 +1,6 @@
-import BestSelling from "./Home/BestSelling";
+import BestSelling from "./Home/BestSellingClient";
 import Design from "./Home/Design";
-import Drop from "./Home/Drop";
+import DropServer from "./Home/DropServer";
 import Hero from "./Home/Hero";
 import Intro from "./Home/Intro";
 
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <BestSelling />
-      <Drop />
+      <DropServer />
       <Design />
     </div>
   );

@@ -252,9 +252,6 @@ export default function Footer() {
               <span className="text-neutral-gray/40 text-xs">
                 Diseñado en México
               </span>
-              <span className="text-neutral-gray/40 text-xs">
-                Hecho con ❤️ para el deporte
-              </span>
             </div>
           </div>
         </div>
