@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`
           ${poppins.variable} ${passionOne.variable}
-          bg-bg text-white
+          bg-primary-black text-primary-white
         `}
       >
         <AuthProvider>

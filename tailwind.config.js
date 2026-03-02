@@ -24,18 +24,24 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
     colors: {
-      white: "#FFFFFF",
-      blue: "#004aad",
-      purple: "#7e5bef",
-      red: "#c30000",
-      orange: "#f97316",
-      green: "#50ff05",
-      yellow: "#F5A524",
-      gold: "#f6c75e",
-      black: "#171717",
-      bg: "#000000",
-      gray: "#d1d5db",
-      zinc: "#52525b",
+      primary: {
+        black: "#000000", // bg
+        white: "#FFFFFF",
+      },
+      accent: {
+        blue: "#004aad",
+        purple: "#7e5bef",
+        red: "#c30000",
+        orange: "#f97316",
+        green: "#50ff05",
+        yellow: "#F5A524",
+        gold: "#f6c75e",
+      },
+      neutral: {
+        gray: "#d1d5db",
+        zinc: "#52525b",
+        black: "#171717",
+      },
     },
     spacing: {
       0: "0",
