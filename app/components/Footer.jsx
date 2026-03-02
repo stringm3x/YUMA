@@ -242,16 +242,32 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Barra inferior con copyright */}
+        {/* Barra inferior con copyright y crédito STRING */}
         <div className="mt-16 pt-8 border-t border-neutral-zinc/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-neutral-gray/60 text-sm">
               © {new Date().getFullYear()} YUMA. Todos los derechos reservados.
             </p>
-            <div className="flex space-x-6">
-              <span className="text-neutral-gray/40 text-xs">
-                Diseñado en México
-              </span>
+
+            {/* Crédito STRING con tipografía Anton */}
+            <div className="flex items-center space-x-2">
+              <span className="text-neutral-gray/40 text-xs">Desarrollado por</span>
+              <a
+                href="https://www.stringwebs.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center space-x-1"
+              >
+                <span
+                  className="font-anton text-base md:text-lg tracking-wider text-accent-gold group-hover:text-white transition-colors duration-300"
+                  style={{ fontFamily: "Anton, sans-serif" }}
+                >
+                  STRING
+                </span>
+                <span className="text-xs text-neutral-gray/40 group-hover:text-accent-gold transition-colors">
+                  ↗
+                </span>
+              </a>
             </div>
           </div>
         </div>
