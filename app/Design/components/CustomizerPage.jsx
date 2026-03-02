@@ -162,7 +162,7 @@ export default function CustomizerPage({ product }) {
   ];
 
   return (
-    <section className="min-h-screen py-10 2xl:py-20">
+    <section className="min-h-screen py-20">
       {/* Header con navegación */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <Link
