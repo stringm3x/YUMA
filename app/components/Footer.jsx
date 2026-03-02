@@ -44,7 +44,7 @@ export default function Footer() {
   return (
     <footer
       id="main-footer"
-      className="w-full text-white bg-gradient-to-b from-primary-black to-neutral-black relative overflow-hidden"
+      className="w-full text-white relative overflow-hidden"
     >
       {/* Línea decorativa superior con gradiente */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-gold via-accent-purple to-accent-blue" />

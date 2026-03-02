@@ -110,7 +110,7 @@ const Menu = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-24 md:py-32 bg-gradient-to-b from-primary-black to-neutral-black"
+      className="py-24 md:py-32"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título de sección */}
